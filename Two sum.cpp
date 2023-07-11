@@ -18,5 +18,23 @@ public:
         }
       }
 };
+// https://leetcode.com/problems/unique-number-of-occurrences/description/
+bool uniqueOccurrences(vector<int>& arr) {
 
+        auto len = max_element(arr.begin(), arr.end());
+        vector<int> heap(*len+1,0);
+        for(int i =0; i<arr.size();i++){
+            heap[arr[i]]++;
+        }
+    auto it=1;
+        for(auto& i : heap){
+            auto result = std::find(heap.begin() + it, heap.end(), i);
+            it++;
+            if(result != heap.end()){
+                return false;
+            }
+        }
+        return true;
+        
+    }
 
